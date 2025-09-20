@@ -3,64 +3,531 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subhankar Roy</title>
+    <title>Subhankar Roy - Portfolio</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Technical Skills</a></li>
-                <li><a href="Resume Subhankar Roy.pdf" target="_blank">Resume</a></li>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h2>Subhankar Roy</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="assets/data/Subhankar_Roy_0-1 years.pdf" target="_blank" class="nav-link resume-link">Resume <i class="fas fa-download"></i></a></li>
             </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <img src="assets/images/profile.jpg" alt="Profile Picture" class="profile-img">
-            <h1>Subhankar Roy</h1>
-            <p>Welcome to my portfolio! I am a passionate Computer Science student with experience in AI, cloud computing, and more.</p>
-            <div class="social-links">
-                <a href="https://github.com/Subhankar-hub" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/subhankar-roy-58b755199/" target="_blank">LinkedIn</a>
-                <a href="mailto:subhankar.smith2003@gmail.com">Email</a>
+        <!-- Hero Section -->
+        <section id="about" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hi, I'm <span class="highlight">Subhankar Roy</span></h1>
+                    <h2 class="hero-subtitle">Final-Year CSE Student & Full-Stack Developer</h2>
+                    <p class="hero-description">
+                        As a final-year student, I build practical web applications using Java, Spring Boot, and React.js. 
+                        I'm driven by a deep curiosity for how software and hardware interact, which is why I spent my 
+                        internship researching and benchmarking algorithm performance across different CPUs and GPUs. 
+                        I also explore system vulnerabilities through ethical hacking challenges.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="assets/data/Subhankar_Roy_0-1 years.pdf" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/Subhankar-hub" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/subhankar-roy-58b755199/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:subhankar.smith2003@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/images/profile.jpg" alt="Subhankar Roy" class="profile-img">
+                </div>
             </div>
         </section>
 
-        <section id="education">
-            <h2>Education</h2>
-            <p><strong>North Eastern Regional Institute Of Science And Technology, Nirjuli, Arunachal Pradesh</strong><br>
-            Bachelor of Technology in Computer Science and Engineering, Aug 2021 – Present</p>
-            <p><strong>Base Module (Certificate) in Electronics And Communication Engineering</strong><br>
-            Jul 2019 – Jul 2021</p>
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Bachelor of Technology in Computer Science and Engineering</h3>
+                            <h4>North Eastern Regional Institute Of Science And Technology</h4>
+                            <p class="location">Nirjuli, Arunachal Pradesh</p>
+                            <p class="duration">Aug 2021 – Expected July 2026</p>
+                            <p class="description">
+                                Pursuing B.Tech in CSE with focus on artificial intelligence, 
+                                machine learning, and software engineering. Cumulative CGPA: 6.50/10. 
+                                Relevant coursework includes Software Engineering, Operating Systems, 
+                                Algorithms, Artificial Intelligence, and Computer Networks.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Base Module Certificate in Electronics And Communication Engineering</h3>
+                            <p class="duration">Jul 2019 – Jul 2021</p>
+                            <p class="description">
+                                Completed foundational studies in electronics and communication engineering, 
+                                providing a strong technical foundation for advanced computer science studies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="experience">
-            <h2>Experience</h2>
-            <p><strong>Summer Intern</strong> <em>June 2023 – July 2023</em><br>
-            Study on AI Computation Algorithm Behavior on Different Processors at Tripura University. Under the Supervision of Prof. Swanirbhar Majumder.</p>
-            <p><strong>AWS Cloud Intern</strong> <em>Sep 2021 – Jan 2022</em><br>
-            Completed multiple AWS partner accreditations. At F13 Technologies(Remote) </p>
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="experience-content">
+                            <h3>Software Engineering Intern</h3>
+                            <h4>National Informatics Centre, Agartala, Tripura</h4>
+                            <p class="duration">June 2025 – July 2025</p>
+                            <p class="description">
+                                Developed a full-stack professional tax registration portal that reduced average user completion time significantly. 
+                                Engineered responsive frontend with React, TypeScript, and Vite, resulting in 40% increase in successful online 
+                                registrations and 60% reduction in data submission errors. Built robust backend using Spring Boot (Java 17+) and PostgreSQL.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Java 17+</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">RESTful APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="experience-content">
+                            <h3>AI Computation Research Intern</h3>
+                            <h4>Tripura University, Agartala, Tripura</h4>
+                            <p class="duration">June 2023 – July 2023</p>
+                            <p class="description">
+                                Accelerated machine learning model training by over 10x by configuring GPU environments across Windows (CUDA), 
+                                macOS (Metal), and Linux. Conducted extensive performance benchmarking of ML algorithms (KNN, Random Forest, GBM, CNNs) 
+                                across four unique hardware configurations. Reduced model training time by over 2.5x using GPU acceleration.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Machine Learning</span>
+                                <span class="tech-tag">GPU Computing</span>
+                                <span class="tech-tag">CUDA</span>
+                                <span class="tech-tag">Performance Analysis</span>
+                                <span class="tech-tag">Research</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="experience-content">
+                            <h3>AWS Cloud Trainee</h3>
+                            <h4>F13 Technologies (Remote)</h4>
+                            <p class="duration">Sep 2021 – Jan 2022</p>
+                            <p class="description">
+                                Completed hands-on training in AWS services and cloud architecture. Earned multiple AWS partner accreditations 
+                                including Cloud Practitioner Essentials, Cloud Economics Essentials, and Technical Accreditation.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">Cloud Computing</span>
+                                <span class="tech-tag">EC2</span>
+                                <span class="tech-tag">S3</span>
+                                <span class="tech-tag">Lambda</span>
+                                <span class="tech-tag">VPC</span>
+                                <span class="tech-tag">IAM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <ul>
-                <li><strong>Languages:</strong> Java, Python, C/C++, SQL</li>
-                <li><strong>Developer Tools:</strong> Git, Docker, AWS, LaTeX, VS Code</li>
-                <li><strong>Libraries:</strong> Pandas, NumPy, Matplotlib, TensorFlow, scikit-learn</li>
-            </ul>
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Professional Tax Portal</h3>
+                            <p class="project-description">
+                                Architected a full-stack tax portal for the Tripura State government, digitizing a manual process 
+                                to cut citizen registration time from days to under 10 minutes. Reduced data submission errors by 70% 
+                                through responsive multi-step UI with TypeScript and Zod for real-time validation. Engineered secure 
+                                backend RESTful APIs with Spring Boot and Java 17+.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Java 17+</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Zod Validation</span>
+                                <span class="tech-tag">RESTful APIs</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Subhankar-hub" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Java</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">C/C++</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">SQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Bash</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-layer-group"></i> Frameworks & Libraries</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">Spring Boot</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">React</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">TypeScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Vite</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-database"></i> Databases & Cloud</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">PostgreSQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">MySQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">AWS (EC2, S3, VPC, IAM, Lambda)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-tools"></i> Tools & DevOps</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">Git</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Docker</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Jenkins</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">CI/CD</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-network-wired"></i> Networking & OS</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">Linux</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">TCP/IP</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">DNS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Routing (OSPF/BGP)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section">
+            <div class="container">
+                <h2 class="section-title">Achievements & Certifications</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>AWS Cloud Practitioner Essentials</h3>
+                            <p>Fundamental understanding of AWS Cloud concepts and services</p>
+                            <span class="achievement-date">2021-2022</span>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>AWS Partner: Cloud Economics Essentials</h3>
+                            <p>Understanding of cloud economics and cost optimization strategies</p>
+                            <span class="achievement-date">2021-2022</span>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>AWS Partner: Accreditation (Business)</h3>
+                            <p>Business-focused AWS partner accreditation</p>
+                            <span class="achievement-date">2021-2022</span>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>AWS Partner: Technical Accredited</h3>
+                            <p>Technical expertise in AWS services and solutions</p>
+                            <span class="achievement-date">2021-2022</span>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>AI Research Internship</h3>
+                            <p>Selected for competitive AI research internship at Tripura University</p>
+                            <span class="achievement-date">2023</span>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3>Head of IT - Model United Nations</h3>
+                            <p>Coordinated IT operations for MUN Shristi event with 95% satisfaction rate</p>
+                            <span class="achievement-date">April 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2024 Subhankar Roy</p>
-        <p><a href="https://github.com/Subhankar-hub">GitHub</a> | 
-           <a href="https://www.linkedin.com/in/subhankar-roy-58b755199/">LinkedIn</a></p>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-description">
+                I'm always interested in new opportunities and collaborations. 
+                Feel free to reach out!
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:subhankar.smith2003@gmail.com">subhankar.smith2003@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/subhankar-roy-58b755199/" target="_blank">LinkedIn Profile</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/Subhankar-hub" target="_blank">GitHub Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Subhankar Roy. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Subhankar-hub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/subhankar-roy-58b755199/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:subhankar.smith2003@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
