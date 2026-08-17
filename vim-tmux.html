@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vim · Tmux · Terminal — Subhankar Roy</title>
+    <meta name="description" content="Personal Vim, tmux, and zsh cheatsheet: shortcuts, plugins, LSP, and configs.">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary">
+            <a class="logo" href="index.html">Subhankar Roy</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a class="is-active" href="vim-tmux.html">Vim &amp; Tmux</a></li>
+                <li><a href="dotfiles.html">Dotfiles</a></li>
+                <li><a class="resume" href="assets/data/Subhankar_Roy_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="container">
+        <section class="page-intro">
+            <h1>Vim · Tmux · Terminal</h1>
+            <p class="lede">
+                Personal reference for this machine — shortcuts, plugins, LSP, and tmux integration.
+                Vim 9.1 · tmux 3.6 · zsh. Leader is <kbd>Space</kbd>. tmux prefix is <kbd>Ctrl-b</kbd>.
+            </p>
+            <div class="note">
+                <strong>How to read this.</strong>
+                Keys in chips are chords you press. <code>:Command</code> is typed in Vim command mode (press <kbd>:</kbd> first).
+                <kbd>Leader</kbd> means <kbd>Space</kbd>. <kbd>Prefix</kbd> means <kbd>Ctrl-b</kbd> in tmux.
+                Custom maps from <code>~/.vimrc</code> and <code>~/.tmux.conf</code> are marked in the tables; everything else is stock Vim / zsh / tmux.
+                Raw files: <a href="dotfiles.html">dotfiles page</a>.
+            </div>
+            <nav class="toc" aria-label="Cheatsheet sections">
+                <a href="#setup">Setup</a>
+                <a href="#modes">Modes</a>
+                <a href="#motions">Motions</a>
+                <a href="#files">Files</a>
+                <a href="#search">Search</a>
+                <a href="#maps">Custom maps</a>
+                <a href="#plugins">Plugins</a>
+                <a href="#lsp">LSP</a>
+                <a href="#vim-term">Vim terminal</a>
+                <a href="#zsh">zsh</a>
+                <a href="#tmux">tmux</a>
+                <a href="#integration">Vim ↔ tmux</a>
+                <a href="#chords">Control keys</a>
+                <a href="#workflows">Workflows</a>
+            </nav>
+        </section>
+
+        <section id="setup" class="cheat-section">
+            <h2>1. Setup at a glance</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Editor</h3>
+                    <ul>
+                        <li>Config: <code>~/.vimrc</code></li>
+                        <li>Plugins: vim-plug in <code>~/.vim/plugged</code></li>
+                        <li>Theme in the editor: Gruvbox dark + Lightline</li>
+                        <li>LSP via ALE: OCaml, Rust, Go</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Multiplexer</h3>
+                    <ul>
+                        <li>Config: <code>~/.tmux.conf</code></li>
+                        <li><kbd>Ctrl-h/j/k/l</kbd> moves across Vim splits and tmux panes</li>
+                        <li>Mouse on, vi copy-mode, 1-based windows</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Language servers</h3>
+                    <ul>
+                        <li>Rust: <code>rust-analyzer</code></li>
+                        <li>Go: <code>gopls</code> + <code>goimports</code></li>
+                        <li>OCaml: <code>ocamllsp</code> + <code>ocamlformat</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="modes" class="cheat-section">
+            <h2>2. Vim modes and survival keys</h2>
+            <p>Vim is modal. Almost every shortcut depends on which mode you are in.</p>
+            <table>
+                <tr><th>Mode</th><th>Enter it</th><th>Leave it</th><th>What it is for</th></tr>
+                <tr><td>Normal</td><td>start here; or <kbd>Esc</kbd></td><td>—</td><td>Motions, operators, commands. Home base.</td></tr>
+                <tr><td>Insert</td><td><kbd>i</kbd> <kbd>a</kbd> <kbd>I</kbd> <kbd>A</kbd> <kbd>o</kbd> <kbd>O</kbd> <kbd>s</kbd> <kbd>c</kbd></td><td><kbd>Esc</kbd></td><td>Typing text.</td></tr>
+                <tr><td>Visual</td><td><kbd>v</kbd> char, <kbd>V</kbd> line, <kbd>Ctrl-v</kbd> block</td><td><kbd>Esc</kbd></td><td>Selecting text to operate on.</td></tr>
+                <tr><td>Command-line</td><td><kbd>:</kbd> <kbd>/</kbd> <kbd>?</kbd></td><td><kbd>Enter</kbd> or <kbd>Esc</kbd></td><td>Ex commands and search.</td></tr>
+                <tr><td>Replace</td><td><kbd>R</kbd></td><td><kbd>Esc</kbd></td><td>Overwrite characters.</td></tr>
+                <tr><td>Terminal-Job</td><td><kbd>Space</kbd> <kbd>t</kbd></td><td><kbd>Esc</kbd> or <kbd>Ctrl-w</kbd> <kbd>N</kbd></td><td>Shell inside Vim.</td></tr>
+            </table>
+            <h3>Insert-mode entry</h3>
+            <table>
+                <tr><th>Key</th><th>Action</th><th>Key</th><th>Action</th></tr>
+                <tr><td><kbd>i</kbd></td><td>Insert before cursor</td><td><kbd>a</kbd></td><td>Insert after cursor</td></tr>
+                <tr><td><kbd>I</kbd></td><td>Insert at start of line</td><td><kbd>A</kbd></td><td>Insert at end of line</td></tr>
+                <tr><td><kbd>o</kbd></td><td>Open line below</td><td><kbd>O</kbd></td><td>Open line above</td></tr>
+                <tr><td><kbd>s</kbd></td><td>Delete char, insert</td><td><kbd>S</kbd></td><td>Delete line, insert</td></tr>
+                <tr><td><kbd>c{motion}</kbd></td><td>Change motion</td><td><kbd>cc</kbd> / <kbd>C</kbd></td><td>Change line / to end of line</td></tr>
+                <tr><td><kbd>r{char}</kbd></td><td>Replace one character</td><td><kbd>R</kbd></td><td>Replace mode</td></tr>
+            </table>
+        </section>
+
+        <section id="motions" class="cheat-section">
+            <h2>3. Motions, operators, and text objects</h2>
+            <p>The Vim grammar is <strong>operator + motion</strong> (optionally with a count): <kbd>d</kbd><kbd>w</kbd>, <kbd>2</kbd><kbd>c</kbd><kbd>i</kbd><kbd>"</kbd>, <kbd>y</kbd><kbd>ap</kbd>.</p>
+            <div class="grid-2">
+                <table>
+                    <tr><th>Motion</th><th>Goes to</th></tr>
+                    <tr><td><kbd>h</kbd> <kbd>j</kbd> <kbd>k</kbd> <kbd>l</kbd></td><td>Left / down / up / right</td></tr>
+                    <tr><td><kbd>w</kbd> <kbd>b</kbd> <kbd>e</kbd></td><td>Next word / back / end of word</td></tr>
+                    <tr><td><kbd>W</kbd> <kbd>B</kbd> <kbd>E</kbd></td><td>Same, WORD (space-separated)</td></tr>
+                    <tr><td><kbd>0</kbd> <kbd>^</kbd> <kbd>$</kbd></td><td>Start / first non-blank / end of line</td></tr>
+                    <tr><td><kbd>gg</kbd> <kbd>G</kbd></td><td>Top / bottom of file</td></tr>
+                    <tr><td><kbd>{n}G</kbd></td><td>Line n</td></tr>
+                    <tr><td><kbd>Ctrl-d</kbd> <kbd>Ctrl-u</kbd></td><td>Half page down / up</td></tr>
+                    <tr><td><kbd>Ctrl-f</kbd> <kbd>Ctrl-b</kbd></td><td>Page down / up</td></tr>
+                    <tr><td><kbd>zz</kbd> <kbd>zt</kbd> <kbd>zb</kbd></td><td>Center / top / bottom current line</td></tr>
+                    <tr><td><kbd>%</kbd></td><td>Matching <code>() [] {}</code></td></tr>
+                    <tr><td><kbd>f{c}</kbd> <kbd>F{c}</kbd></td><td>Find char forward / back</td></tr>
+                    <tr><td><kbd>t{c}</kbd> <kbd>T{c}</kbd></td><td>Till char forward / back</td></tr>
+                    <tr><td><kbd>;</kbd> <kbd>,</kbd></td><td>Repeat last f/t / reverse</td></tr>
+                    <tr><td><kbd>*</kbd> <kbd>#</kbd></td><td>Search word under cursor fwd / back</td></tr>
+                    <tr><td><kbd>n</kbd> <kbd>N</kbd></td><td>Next / previous search match</td></tr>
+                    <tr><td><kbd>H</kbd> <kbd>M</kbd> <kbd>L</kbd></td><td>Top / middle / bottom of window</td></tr>
+                </table>
+                <table>
+                    <tr><th>Operator / object</th><th>Action</th></tr>
+                    <tr><td><kbd>d</kbd></td><td>Delete</td></tr>
+                    <tr><td><kbd>c</kbd></td><td>Change (delete + insert)</td></tr>
+                    <tr><td><kbd>y</kbd></td><td>Yank (copy)</td></tr>
+                    <tr><td><kbd>p</kbd> <kbd>P</kbd></td><td>Paste after / before</td></tr>
+                    <tr><td><kbd>u</kbd> <kbd>Ctrl-r</kbd></td><td>Undo / redo</td></tr>
+                    <tr><td><kbd>.</kbd></td><td>Repeat last change</td></tr>
+                    <tr><td><kbd>&gt;</kbd> <kbd>&lt;</kbd></td><td>Indent / unindent</td></tr>
+                    <tr><td><kbd>=</kbd></td><td>Auto-indent</td></tr>
+                    <tr><td><kbd>g~</kbd> <kbd>gu</kbd> <kbd>gU</kbd></td><td>Toggle / lower / upper case</td></tr>
+                    <tr><td><kbd>iw</kbd> <kbd>aw</kbd></td><td>Inner / a word</td></tr>
+                    <tr><td><kbd>i"</kbd> <kbd>a"</kbd></td><td>Inside / around quotes (also <code>' `</code>)</td></tr>
+                    <tr><td><kbd>i(</kbd> <kbd>a(</kbd></td><td>Inside / around parens (also <code>[] {}</code>)</td></tr>
+                    <tr><td><kbd>ip</kbd> <kbd>ap</kbd></td><td>Inner / a paragraph</td></tr>
+                    <tr><td><kbd>it</kbd> <kbd>at</kbd></td><td>Inner / a HTML/XML tag</td></tr>
+                    <tr><td><kbd>diw</kbd> example</td><td>Delete inner word</td></tr>
+                    <tr><td><kbd>ci"</kbd> example</td><td>Change inside quotes</td></tr>
+                </table>
+            </div>
+            <h3>Visual mode extras</h3>
+            <table>
+                <tr><th>Key</th><th>Action</th></tr>
+                <tr><td><kbd>v</kbd> / <kbd>V</kbd> / <kbd>Ctrl-v</kbd></td><td>Character / line / block visual</td></tr>
+                <tr><td><kbd>o</kbd></td><td>Jump to the other end of the selection</td></tr>
+                <tr><td><kbd>gv</kbd></td><td>Reselect last visual selection</td></tr>
+                <tr><td><kbd>I</kbd> / <kbd>A</kbd> in block visual</td><td>Insert / append on every selected line</td></tr>
+                <tr><td><kbd>y</kbd> then <kbd>p</kbd></td><td>Yank selection, paste</td></tr>
+            </table>
+        </section>
+
+        <section id="files" class="cheat-section">
+            <h2>4. Files, buffers, windows, tabs</h2>
+            <div class="grid-2">
+                <table>
+                    <tr><th>Command / key</th><th>Action</th></tr>
+                    <tr><td><kbd>:w</kbd> or <kbd>Space</kbd> <kbd>w</kbd></td><td>Write (save) — custom</td></tr>
+                    <tr><td><kbd>:q</kbd> or <kbd>Space</kbd> <kbd>q</kbd></td><td>Quit window — custom</td></tr>
+                    <tr><td><kbd>:wq</kbd> / <kbd>ZZ</kbd></td><td>Save and quit</td></tr>
+                    <tr><td><kbd>:q!</kbd> / <kbd>ZQ</kbd></td><td>Quit without saving</td></tr>
+                    <tr><td><kbd>:e {file}</kbd></td><td>Edit file</td></tr>
+                    <tr><td><kbd>:e!</kbd></td><td>Reload from disk, discard changes</td></tr>
+                    <tr><td><kbd>Ctrl-p</kbd> or <kbd>Space</kbd> <kbd>p</kbd></td><td>Fuzzy find files (FZF) — custom</td></tr>
+                    <tr><td><kbd>Space</kbd> <kbd>b</kbd></td><td>Fuzzy switch buffers — custom</td></tr>
+                    <tr><td><kbd>:ls</kbd></td><td>List buffers</td></tr>
+                    <tr><td><kbd>:b {n}</kbd> / <kbd>:b {name}</kbd></td><td>Go to buffer</td></tr>
+                    <tr><td><kbd>:bd</kbd></td><td>Delete (close) buffer</td></tr>
+                    <tr><td><kbd>Ctrl-^</kbd></td><td>Alternate (last) buffer</td></tr>
+                </table>
+                <table>
+                    <tr><th>Command / key</th><th>Action</th></tr>
+                    <tr><td><kbd>:sp</kbd> / <kbd>Space</kbd> <kbd>-</kbd></td><td>Horizontal split — custom</td></tr>
+                    <tr><td><kbd>:vs</kbd> / <kbd>Space</kbd> <kbd>\</kbd></td><td>Vertical split — custom</td></tr>
+                    <tr><td><kbd>Ctrl-w</kbd> <kbd>s</kbd> / <kbd>v</kbd></td><td>Split horizontal / vertical</td></tr>
+                    <tr><td><kbd>Ctrl-h/j/k/l</kbd></td><td>Move to pane (Vim or tmux) — custom</td></tr>
+                    <tr><td><kbd>Ctrl-w</kbd> <kbd>w</kbd></td><td>Next window</td></tr>
+                    <tr><td><kbd>Ctrl-w</kbd> <kbd>=</kbd></td><td>Equalize split sizes</td></tr>
+                    <tr><td><kbd>Ctrl-w</kbd> <kbd>_</kbd> / <kbd>|</kbd></td><td>Maximize height / width</td></tr>
+                    <tr><td><kbd>Ctrl-w</kbd> <kbd>q</kbd></td><td>Close current window</td></tr>
+                    <tr><td><kbd>:tabnew</kbd></td><td>New tab</td></tr>
+                    <tr><td><kbd>gt</kbd> / <kbd>gT</kbd></td><td>Next / previous tab</td></tr>
+                    <tr><td><kbd>{n}gt</kbd></td><td>Go to tab n</td></tr>
+                    <tr><td><kbd>:tabc</kbd></td><td>Close tab</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="search" class="cheat-section">
+            <h2>5. Search, replace, and marks</h2>
+            <table>
+                <tr><th>Key / command</th><th>Action</th></tr>
+                <tr><td><kbd>/</kbd>pattern <kbd>Enter</kbd></td><td>Search forward</td></tr>
+                <tr><td><kbd>?</kbd>pattern <kbd>Enter</kbd></td><td>Search backward</td></tr>
+                <tr><td><kbd>n</kbd> / <kbd>N</kbd></td><td>Next / previous match</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>Clear search highlight — custom</td></tr>
+                <tr><td><kbd>:noh</kbd></td><td>Same, as a command</td></tr>
+                <tr><td><kbd>:s/old/new/</kbd></td><td>Replace first match on the line</td></tr>
+                <tr><td><kbd>:s/old/new/g</kbd></td><td>Replace all on the line</td></tr>
+                <tr><td><kbd>:%s/old/new/gc</kbd></td><td>Replace in file, confirm each</td></tr>
+                <tr><td><kbd>ma</kbd> then <kbd>'a</kbd></td><td>Set mark a, jump to mark a (line)</td></tr>
+                <tr><td><kbd>`a</kbd></td><td>Jump to exact position of mark a</td></tr>
+                <tr><td><kbd>''</kbd> / <kbd>``</kbd></td><td>Jump back to previous position</td></tr>
+                <tr><td><kbd>Ctrl-o</kbd> / <kbd>Ctrl-i</kbd></td><td>Older / newer jump list position</td></tr>
+                <tr><td><kbd>gd</kbd></td><td>Go to definition (LSP) — custom; stock Vim: local declaration</td></tr>
+            </table>
+        </section>
+
+        <section id="maps" class="cheat-section">
+            <h2>6. Custom keybindings from ~/.vimrc</h2>
+            <p>Leader is <kbd>Space</kbd>. Press Space, then the next key. Do not hold them together.</p>
+            <table>
+                <tr><th>Keys</th><th>Mode</th><th>Action</th></tr>
+                <tr><td><kbd>Space</kbd> <kbd>w</kbd></td><td>Normal</td><td>Save file</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>q</kbd></td><td>Normal</td><td>Quit window</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>sv</kbd></td><td>Normal</td><td>Reload <code>~/.vimrc</code></td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>-</kbd></td><td>Normal</td><td>Horizontal split</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>\</kbd></td><td>Normal</td><td>Vertical split</td></tr>
+                <tr><td><kbd>Ctrl-n</kbd> or <kbd>Space</kbd> <kbd>e</kbd></td><td>Normal</td><td>Toggle NERDTree</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>nf</kbd></td><td>Normal</td><td>NERDTree: reveal current file</td></tr>
+                <tr><td><kbd>Ctrl-p</kbd> or <kbd>Space</kbd> <kbd>p</kbd></td><td>Normal</td><td>FZF file finder</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>b</kbd></td><td>Normal</td><td>FZF buffers</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>/</kbd></td><td>Normal</td><td>Ripgrep project search (FZF)</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>h</kbd></td><td>Normal</td><td>FZF recent files</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>Normal</td><td>Clear search highlight</td></tr>
+                <tr><td><kbd>Ctrl-h/j/k/l</kbd></td><td>Normal / Terminal</td><td>Move to Vim split or tmux pane</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>t</kbd></td><td>Normal</td><td>Open Vim terminal in current window</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>ts</kbd></td><td>Normal</td><td>Open Vim terminal in a split</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>Terminal-Job</td><td>Switch to Terminal-Normal mode</td></tr>
+            </table>
+        </section>
+
+        <section id="plugins" class="cheat-section">
+            <h2>7. Plugin commands</h2>
+            <h3>vim-plug</h3>
+            <table>
+                <tr><th>Command</th><th>Action</th></tr>
+                <tr><td><code>:PlugInstall</code></td><td>Install plugins listed in <code>~/.vimrc</code></td></tr>
+                <tr><td><code>:PlugUpdate</code></td><td>Update all plugins</td></tr>
+                <tr><td><code>:PlugClean</code></td><td>Remove plugins no longer listed</td></tr>
+                <tr><td><code>:PlugStatus</code></td><td>Show plugin status</td></tr>
+                <tr><td><code>:PlugDiff</code></td><td>Review changes from last update</td></tr>
+                <tr><td><code>:PlugUpgrade</code></td><td>Upgrade vim-plug itself</td></tr>
+            </table>
+            <p class="small">Installed plugins: NERDTree, fzf, fzf.vim, lightline, auto-pairs, vim-fugitive, vim-gitgutter, ALE, rust.vim, vim-ocaml, vim-tmux-navigator, gruvbox.</p>
+
+            <h3>NERDTree</h3>
+            <table>
+                <tr><th>Key</th><th>Where</th><th>Action</th></tr>
+                <tr><td><kbd>Ctrl-n</kbd> / <kbd>Space</kbd> <kbd>e</kbd></td><td>Any window</td><td>Toggle explorer</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>nf</kbd></td><td>File window</td><td>Reveal current file in tree</td></tr>
+                <tr><td><kbd>o</kbd> / <kbd>Enter</kbd></td><td>NERDTree</td><td>Open file / toggle directory</td></tr>
+                <tr><td><kbd>go</kbd></td><td>NERDTree</td><td>Preview file, keep cursor in tree</td></tr>
+                <tr><td><kbd>i</kbd> / <kbd>s</kbd></td><td>NERDTree</td><td>Open in horizontal / vertical split</td></tr>
+                <tr><td><kbd>t</kbd> / <kbd>T</kbd></td><td>NERDTree</td><td>Open in new tab / silent tab</td></tr>
+                <tr><td><kbd>m</kbd></td><td>NERDTree</td><td>Menu: create, delete, move, copy</td></tr>
+                <tr><td><kbd>r</kbd> / <kbd>R</kbd></td><td>NERDTree</td><td>Refresh node / whole tree</td></tr>
+                <tr><td><kbd>I</kbd></td><td>NERDTree</td><td>Toggle hidden files</td></tr>
+                <tr><td><kbd>q</kbd></td><td>NERDTree</td><td>Close explorer</td></tr>
+            </table>
+
+            <h3>FZF</h3>
+            <table>
+                <tr><th>Key / command</th><th>Action</th></tr>
+                <tr><td><kbd>Ctrl-p</kbd> / <code>:Files</code></td><td>Find files in the working directory</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>b</kbd> / <code>:Buffers</code></td><td>Switch buffers</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>/</kbd> / <code>:Rg</code></td><td>Search file contents (ripgrep)</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>h</kbd> / <code>:History</code></td><td>Recently opened files</td></tr>
+                <tr><td><code>:GFiles</code></td><td>Git-tracked files only</td></tr>
+                <tr><td><kbd>Ctrl-t</kbd> in FZF</td><td>Open in new tab</td></tr>
+                <tr><td><kbd>Ctrl-x</kbd> in FZF</td><td>Open in horizontal split</td></tr>
+                <tr><td><kbd>Ctrl-v</kbd> in FZF</td><td>Open in vertical split</td></tr>
+            </table>
+
+            <h3>vim-fugitive</h3>
+            <table>
+                <tr><th>Key / command</th><th>Action</th></tr>
+                <tr><td><kbd>Space</kbd> <kbd>gs</kbd> / <code>:Git</code></td><td>Git status (interactive)</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>gd</kbd> / <code>:Gdiffsplit</code></td><td>Diff against index</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>gb</kbd> / <code>:Git blame</code></td><td>Blame current file</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>gc</kbd> / <code>:Git commit</code></td><td>Commit</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>gp</kbd> / <code>:Git push</code></td><td>Push</td></tr>
+                <tr><td>In <code>:Git</code> status: <kbd>s</kbd> / <kbd>u</kbd> / <kbd>cc</kbd></td><td>Stage / unstage / commit</td></tr>
+            </table>
+
+            <h3>vim-gitgutter</h3>
+            <table>
+                <tr><th>Key</th><th>Action</th></tr>
+                <tr><td><kbd>]h</kbd> / <kbd>[h</kbd></td><td>Next / previous hunk — custom</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>hs</kbd></td><td>Stage hunk — custom</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>hu</kbd></td><td>Undo hunk — custom</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>hp</kbd></td><td>Preview hunk — custom</td></tr>
+            </table>
+        </section>
+
+        <section id="lsp" class="cheat-section">
+            <h2>8. LSP — OCaml, Rust, Go</h2>
+            <p>ALE starts the matching language server when you open a file. Diagnostics appear in the sign column (<code>E</code> / <code>W</code>) and as virtual text. Format-on-save is on.</p>
+            <table>
+                <tr><th>Language</th><th>Server</th><th>Formatter</th><th>Typical project files</th></tr>
+                <tr><td>Rust</td><td><code>rust-analyzer</code></td><td><code>rustfmt</code></td><td><code>Cargo.toml</code></td></tr>
+                <tr><td>Go</td><td><code>gopls</code></td><td><code>gofmt</code> + <code>goimports</code></td><td><code>go.mod</code></td></tr>
+                <tr><td>OCaml</td><td><code>ocamllsp</code></td><td><code>ocamlformat</code></td><td><code>dune-project</code>, <code>.ocamlformat</code></td></tr>
+            </table>
+            <h3>LSP keys</h3>
+            <table>
+                <tr><th>Key</th><th>ALE command</th><th>Action</th></tr>
+                <tr><td><kbd>gd</kbd></td><td><code>:ALEGoToDefinition</code></td><td>Go to definition</td></tr>
+                <tr><td><kbd>gD</kbd></td><td><code>:ALEGoToTypeDefinition</code></td><td>Go to type definition</td></tr>
+                <tr><td><kbd>gi</kbd></td><td><code>:ALEGoToImplementation</code></td><td>Go to implementation</td></tr>
+                <tr><td><kbd>gr</kbd></td><td><code>:ALEFindReferences</code></td><td>Find references</td></tr>
+                <tr><td><kbd>K</kbd></td><td><code>:ALEHover</code></td><td>Hover docs / type</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>k</kbd></td><td><code>:ALEDocumentation</code></td><td>Full documentation</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>rn</kbd></td><td><code>:ALERename</code></td><td>Rename symbol</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>ca</kbd></td><td><code>:ALECodeAction</code></td><td>Code actions / quick-fixes</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>f</kbd></td><td><code>:ALEFix</code></td><td>Format / fix now</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>d</kbd></td><td><code>:ALEDetail</code></td><td>Full diagnostic message</td></tr>
+                <tr><td><kbd>]d</kbd> / <kbd>[d</kbd></td><td><code>:ALENextWrap</code> / <code>:ALEPreviousWrap</code></td><td>Next / previous diagnostic</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>li</kbd></td><td><code>:ALEInfo</code></td><td>Show which linters/LSP are running</td></tr>
+            </table>
+            <h3>Completion</h3>
+            <table>
+                <tr><th>Key</th><th>Action</th></tr>
+                <tr><td>Type in insert mode</td><td>ALE pops a completion menu automatically</td></tr>
+                <tr><td><kbd>Tab</kbd> / <kbd>Shift-Tab</kbd></td><td>Next / previous completion item — custom</td></tr>
+                <tr><td><kbd>Enter</kbd></td><td>Accept selected item if menu is open — custom</td></tr>
+                <tr><td><kbd>Ctrl-e</kbd></td><td>Cancel the popup menu</td></tr>
+            </table>
+            <div class="note">
+                <strong>If LSP does nothing:</strong> run <code>:ALEInfo</code>. Confirm the server binary is on PATH
+                (<code>rust-analyzer</code>, <code>gopls</code>, <code>ocamllsp</code>). Open the project root
+                (the folder with <code>Cargo.toml</code> / <code>go.mod</code> / <code>dune-project</code>).
+            </div>
+        </section>
+
+        <section id="vim-term" class="cheat-section">
+            <h2>9. Vim built-in terminal</h2>
+            <table>
+                <tr><th>Key / command</th><th>Action</th></tr>
+                <tr><td><kbd>Space</kbd> <kbd>t</kbd></td><td>Terminal in the current window</td></tr>
+                <tr><td><kbd>Space</kbd> <kbd>ts</kbd></td><td>Terminal in a new split</td></tr>
+                <tr><td><kbd>Esc</kbd> or <kbd>Ctrl-w</kbd> <kbd>N</kbd></td><td>Job mode → Terminal-Normal (scroll, yank)</td></tr>
+                <tr><td><kbd>i</kbd> or <kbd>a</kbd></td><td>Back to Terminal-Job</td></tr>
+                <tr><td><kbd>Ctrl-h/j/k/l</kbd></td><td>Leave the terminal toward another Vim split or tmux pane</td></tr>
+            </table>
+            <p class="small">Prefer a tmux pane for long-running shells; use Vim <code>:terminal</code> when you want to yank compiler output into a buffer.</p>
+        </section>
+
+        <section id="zsh" class="cheat-section">
+            <h2>10. Terminal (zsh) shortcuts</h2>
+            <p>The shell uses <strong>Emacs keybindings</strong> (<code>bindkey -e</code>). Up/Down search history by the prefix already typed.</p>
+            <div class="grid-2">
+                <table>
+                    <tr><th>Key</th><th>Action</th></tr>
+                    <tr><td><kbd>Ctrl-a</kbd></td><td>Start of line</td></tr>
+                    <tr><td><kbd>Ctrl-e</kbd></td><td>End of line</td></tr>
+                    <tr><td><kbd>Ctrl-b</kbd> / <kbd>Ctrl-f</kbd></td><td>Back / forward one char</td></tr>
+                    <tr><td><kbd>Alt-b</kbd> / <kbd>Alt-f</kbd></td><td>Back / forward one word</td></tr>
+                    <tr><td><kbd>Ctrl-w</kbd></td><td>Delete word before cursor</td></tr>
+                    <tr><td><kbd>Ctrl-u</kbd></td><td>Delete from cursor to start of line</td></tr>
+                    <tr><td><kbd>Ctrl-k</kbd></td><td>Delete from cursor to end of line</td></tr>
+                    <tr><td><kbd>Ctrl-y</kbd></td><td>Yank (paste) last killed text</td></tr>
+                </table>
+                <table>
+                    <tr><th>Key / alias</th><th>Action</th></tr>
+                    <tr><td><kbd>Up</kbd> / <kbd>Down</kbd></td><td>History search matching current prefix — custom</td></tr>
+                    <tr><td><kbd>Ctrl-r</kbd></td><td>Incremental reverse history search</td></tr>
+                    <tr><td><kbd>Ctrl-l</kbd></td><td>Clear screen (in tmux: <kbd>Prefix</kbd> <kbd>Ctrl-l</kbd>)</td></tr>
+                    <tr><td><code>ll</code> <code>la</code> <code>l</code></td><td><code>ls -alF</code> / <code>ls -A</code> / <code>ls -CF</code></td></tr>
+                    <tr><td><code>gs</code> <code>gd</code> <code>gl</code></td><td><code>git status</code> / <code>diff</code> / <code>log --oneline -n 10</code></td></tr>
+                    <tr><td>Autosuggestions</td><td>Ghost text from history; <kbd>→</kbd> or <kbd>Ctrl-e</kbd> accepts</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="tmux" class="cheat-section">
+            <h2>11. tmux</h2>
+            <p>Prefix is <kbd>Ctrl-b</kbd>. Press Prefix, release, then the command key. Config: <code>~/.tmux.conf</code>. Reload with <kbd>Prefix</kbd> <kbd>r</kbd>.</p>
+            <h3>Sessions and windows</h3>
+            <table>
+                <tr><th>Keys</th><th>Action</th></tr>
+                <tr><td><code>tmux</code> / <code>tmux new -s name</code></td><td>Start a session</td></tr>
+                <tr><td><code>tmux attach -t name</code> / <code>tmux a</code></td><td>Attach</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>d</kbd></td><td>Detach (session keeps running)</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>c</kbd></td><td>New window (same directory) — custom</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>,</kbd></td><td>Rename window</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>n</kbd> / <kbd>p</kbd></td><td>Next / previous window</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>0</kbd>…<kbd>9</kbd></td><td>Go to window number (windows start at 1)</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>Ctrl-h</kbd> / <kbd>Ctrl-l</kbd></td><td>Previous / next window — custom</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>&amp;</kbd></td><td>Kill window</td></tr>
+            </table>
+            <h3>Panes</h3>
+            <table>
+                <tr><th>Keys</th><th>Action</th></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>|</kbd></td><td>Vertical split (Vim-style) — custom</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>-</kbd></td><td>Horizontal split — custom</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>h/j/k/l</kbd></td><td>Move to pane with Vim keys — custom</td></tr>
+                <tr><td><kbd>Ctrl-h/j/k/l</kbd></td><td>Move to pane without prefix; passes through if Vim is focused</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>H/J/K/L</kbd></td><td>Resize pane — custom (repeatable)</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>z</kbd></td><td>Zoom / unzoom pane</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>x</kbd></td><td>Kill pane</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>Ctrl-l</kbd></td><td>Clear screen (because <kbd>Ctrl-l</kbd> moves panes)</td></tr>
+            </table>
+            <h3>Copy mode (vi keys)</h3>
+            <table>
+                <tr><th>Keys</th><th>Action</th></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>[</kbd></td><td>Enter copy mode</td></tr>
+                <tr><td><kbd>v</kbd></td><td>Start selection — custom</td></tr>
+                <tr><td><kbd>y</kbd></td><td>Yank selection and exit — custom</td></tr>
+                <tr><td><kbd>Prefix</kbd> <kbd>]</kbd></td><td>Paste</td></tr>
+                <tr><td>Mouse drag</td><td>Select; wheel to scroll — enabled</td></tr>
+            </table>
+        </section>
+
+        <section id="integration" class="cheat-section">
+            <h2>12. Vim ↔ tmux integration</h2>
+            <p>The plugin <code>christoomey/vim-tmux-navigator</code> plus the matching block in <code>~/.tmux.conf</code> make one navigation language for both programs.</p>
+            <table>
+                <tr><th>You press</th><th>If focus is a Vim split</th><th>If focus is a tmux pane</th></tr>
+                <tr><td><kbd>Ctrl-h</kbd></td><td>Left Vim window, or into the tmux pane on the left at the edge</td><td>Left tmux pane</td></tr>
+                <tr><td><kbd>Ctrl-j</kbd></td><td>Down Vim window / out into tmux</td><td>Down tmux pane</td></tr>
+                <tr><td><kbd>Ctrl-k</kbd></td><td>Up Vim window / out into tmux</td><td>Up tmux pane</td></tr>
+                <tr><td><kbd>Ctrl-l</kbd></td><td>Right Vim window / out into tmux</td><td>Right tmux pane</td></tr>
+                <tr><td><kbd>Ctrl-\</kbd></td><td>Previous Vim window / tmux pane</td><td>Previous tmux pane</td></tr>
+            </table>
+            <div class="note">
+                <strong>Typical layout:</strong> one tmux session per project. Window 1: Vim. Window 2: build/test shell.
+                Or: left pane Vim, right pane compiler. Move with <kbd>Ctrl-h/l</kbd> as if they were the same editor.
+                After editing <code>~/.tmux.conf</code>, run <kbd>Prefix</kbd> <kbd>r</kbd>.
+            </div>
+            <p><strong>Clearing the screen:</strong> <kbd>Ctrl-l</kbd> no longer clears, because it moves panes. Use <kbd>Prefix</kbd> <kbd>Ctrl-l</kbd> or type <code>clear</code>.</p>
+        </section>
+
+        <section id="chords" class="cheat-section">
+            <h2>13. Control-key map</h2>
+            <p>Several programs want the same chords. This is the resolution on this setup.</p>
+            <table>
+                <tr><th>Chord</th><th>In zsh (no tmux)</th><th>In tmux, not Vim</th><th>In Vim (normal)</th><th>In Vim (insert)</th></tr>
+                <tr><td><kbd>Ctrl-a</kbd></td><td>Start of line</td><td>Start of line (prefix is Ctrl-b)</td><td>Increment number</td><td>Insert last inserted text</td></tr>
+                <tr><td><kbd>Ctrl-b</kbd></td><td>Back one char</td><td><strong>tmux prefix</strong></td><td>Page up</td><td>Back one char</td></tr>
+                <tr><td><kbd>Ctrl-h</kbd></td><td>Backspace</td><td><strong>pane left</strong></td><td><strong>window/pane left</strong></td><td>Backspace</td></tr>
+                <tr><td><kbd>Ctrl-j</kbd></td><td>Enter (newline)</td><td><strong>pane down</strong></td><td><strong>window/pane down</strong></td><td>Newline</td></tr>
+                <tr><td><kbd>Ctrl-k</kbd></td><td>Kill to end of line</td><td><strong>pane up</strong></td><td><strong>window/pane up</strong></td><td>Enter digraph</td></tr>
+                <tr><td><kbd>Ctrl-l</kbd></td><td>Clear screen</td><td><strong>pane right</strong> (clear: Prefix Ctrl-l)</td><td><strong>window/pane right</strong></td><td>Redraw</td></tr>
+                <tr><td><kbd>Ctrl-n</kbd></td><td>Next history</td><td>Next history</td><td><strong>NERDTree toggle</strong></td><td>Next completion</td></tr>
+                <tr><td><kbd>Ctrl-p</kbd></td><td>Previous history</td><td>Previous history</td><td><strong>FZF Files</strong></td><td>Previous completion</td></tr>
+                <tr><td><kbd>Space</kbd> (leader)</td><td>Type a space</td><td>Type a space</td><td>Leader prefix for custom maps</td><td>Type a space</td></tr>
+            </table>
+        </section>
+
+        <section id="workflows" class="cheat-section">
+            <h2>14. Everyday workflows</h2>
+            <ol>
+                <li><strong>Start work:</strong> <code>tmux new -s proj</code> (or <code>tmux a -t proj</code>). Split with <kbd>Prefix</kbd> <kbd>|</kbd>. Left: <code>vim .</code> Right: shell.</li>
+                <li><strong>Open a file:</strong> <kbd>Ctrl-p</kbd>, type a fuzzy name, <kbd>Enter</kbd>. Or <kbd>Ctrl-n</kbd> and browse NERDTree.</li>
+                <li><strong>Search the repo:</strong> <kbd>Space</kbd> <kbd>/</kbd>, type a string, <kbd>Enter</kbd> on a hit.</li>
+                <li><strong>Jump around code:</strong> <kbd>gd</kbd> definition, <kbd>gr</kbd> references, <kbd>K</kbd> hover, <kbd>Ctrl-o</kbd> back.</li>
+                <li><strong>Fix diagnostics:</strong> <kbd>]d</kbd> next error, <kbd>Space</kbd> <kbd>d</kbd> detail, <kbd>Space</kbd> <kbd>ca</kbd> code action. Save formats the buffer.</li>
+                <li><strong>Git:</strong> <kbd>Space</kbd> <kbd>gs</kbd> status, <kbd>s</kbd> to stage, <kbd>cc</kbd> to commit. Gutter: <kbd>]h</kbd> next hunk, <kbd>Space</kbd> <kbd>hs</kbd> stage hunk.</li>
+                <li><strong>Leave:</strong> <kbd>ZZ</kbd> or <kbd>Space</kbd> <kbd>w</kbd> then <kbd>Space</kbd> <kbd>q</kbd>. Detach tmux with <kbd>Prefix</kbd> <kbd>d</kbd>.</li>
+            </ol>
+            <p class="small">Source of truth: <code>~/.vimrc</code>, <code>~/.tmux.conf</code>, <code>~/.zshrc</code>. Published copies: <a href="dotfiles.html">dotfiles</a>.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <p>© 2026 Subhankar Roy</p>
+            <p>
+                <a href="mailto:subhankar.smith2003@gmail.com">subhankar.smith2003@gmail.com</a>
+                ·
+                <a href="https://github.com/Subhankar-hub" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </div>
+    </footer>
+    <script src="assets/js/site.js"></script>
+</body>
+
+</html>

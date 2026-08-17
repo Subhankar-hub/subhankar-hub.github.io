@@ -1,0 +1,203 @@
+" ==========================================
+" 1. GENERAL SETTINGS
+" ==========================================
+syntax on               " Enable syntax highlighting
+filetype plugin indent on
+" OCaml indent helpers from opam (safe if the path is missing)
+if isdirectory(expand('~/.opam/default/share/ocp-indent/vim'))
+  set rtp^=~/.opam/default/share/ocp-indent/vim
+endif
+set number              " Show absolute line numbers
+set relativenumber      " Show relative line numbers (makes jumping lines easier)
+set tabstop=4           " Number of spaces a <Tab> counts for
+set shiftwidth=4        " Number of spaces to use for autoindent
+set expandtab           " Convert tabs to spaces
+set smartindent         " Automatically insert one extra level of indentation
+set autoindent          " Copy indent from current line when starting a new line
+set nowrap              " Don't wrap long lines visually
+set hlsearch            " Highlight search results
+set incsearch           " Show search matches as you type
+set cursorline          " Highlight the current line
+set termguicolors       " Enable 24-bit RGB color in the TUI
+set signcolumn=yes      " Always show the sign column (git + LSP diagnostics)
+set updatetime=300      " Faster gitgutter / LSP hover
+set completeopt=menu,menuone,noselect,noinsert,popup
+set hidden              " Keep buffers open when switching files
+set mouse=a             " Mouse support in Vim and tmux
+set splitright
+set splitbelow
+set encoding=utf-8
+set backspace=indent,eol,start
+
+" Leader must be set before any <leader> mappings
+let mapleader = " "
+let maplocalleader = " "
+
+" Ensure language servers are on PATH even if Vim was not launched from zsh
+let $PATH = expand('~/.local/bin') . ':' . expand('~/go/bin') . ':' . expand('~/.opam/default/bin') . ':' . $PATH
+
+" Language-specific indentation
+augroup lang_indent
+  autocmd!
+  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+  autocmd FileType rust setlocal expandtab tabstop=4 shiftwidth=4
+  autocmd FileType ocaml,dune setlocal expandtab tabstop=2 shiftwidth=2
+augroup END
+
+" ==========================================
+" 2. PLUGINS (via vim-plug)
+" ==========================================
+call plug#begin('~/.vim/plugged')
+
+" File Explorer
+Plug 'preservim/nerdtree'
+
+" Fuzzy Finder (Find files quickly)
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Status Line at the bottom
+Plug 'itchyny/lightline.vim'
+
+" Auto-close quotes, parentheses, and brackets
+Plug 'jiangmiao/auto-pairs'
+
+" Git Integration
+Plug 'tpope/vim-fugitive'         " Git commands in Vim
+Plug 'airblade/vim-gitgutter'     " Shows git diff markers in the sign column
+
+" Asynchronous Linting, Formatting, and LSP
+Plug 'dense-analysis/ale'
+
+" Language syntax / extras (LSP itself is provided by ALE)
+Plug 'rust-lang/rust.vim'
+Plug 'ocaml/vim-ocaml'
+
+" Seamless Ctrl-h/j/k/l navigation between Vim splits and tmux panes
+Plug 'christoomey/vim-tmux-navigator'
+
+" Color Scheme
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
+" ==========================================
+" 3. PLUGIN CONFIGURATION & KEYMAPS
+" ==========================================
+
+" Set the color scheme (after plugins so lightline can use the same palette)
+set background=dark
+silent! colorscheme gruvbox
+let g:lightline = { 'colorscheme': 'gruvbox' }
+
+" --- NERDTree ---
+" Press Ctrl+n to open/close the file explorer
+map <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+" Close vim if the only window left open is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" --- FZF (Fuzzy Finder) ---
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>/ :Rg<CR>
+nnoremap <leader>h :History<CR>
+
+" --- General Keybinds ---
+" Clear highlighted search results by pressing Escape
+nnoremap <esc> :noh<return><esc>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Window splits (work together with tmux)
+nnoremap <leader>\ :vsplit<CR>
+nnoremap <leader>- :split<CR>
+
+" ==========================================
+" 4. LSP: OCaml, Rust, Go (via ALE)
+" ==========================================
+" ALE talks to language servers:
+"   rust  -> rust-analyzer
+"   go    -> gopls
+"   ocaml -> ocamllsp (ocaml-lsp-server)
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'rust': ['analyzer'],
+\   'go': ['gopls'],
+\   'ocaml': ['ocamllsp'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'go': ['gofmt', 'goimports'],
+\   'ocaml': ['ocamlformat'],
+\}
+" rustfmt is optional; install with: sudo apt install rustfmt
+if executable('rustfmt')
+  let g:ale_fixers['rust'] = ['rustfmt']
+endif
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_completion_delay = 80
+let g:ale_hover_to_floating_preview = 1
+let g:ale_floating_preview = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+let g:ale_virtualtext_cursor = 1
+let g:rustfmt_autosave = 0
+" Format OCaml files even when the project has no .ocamlformat yet
+let g:ale_ocaml_ocamlformat_options = '--enable-outside-detected-project'
+
+set omnifunc=ale#completion#OmniFunc
+
+" Tab / Shift-Tab to move through the completion menu
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+
+" LSP navigation and refactor (Space is leader)
+nnoremap <silent> gd :ALEGoToDefinition<CR>
+nnoremap <silent> gD :ALEGoToTypeDefinition<CR>
+nnoremap <silent> gi :ALEGoToImplementation<CR>
+nnoremap <silent> gr :ALEFindReferences<CR>
+nnoremap <silent> K  :ALEHover<CR>
+nnoremap <silent> <leader>rn :ALERename<CR>
+nnoremap <silent> <leader>ca :ALECodeAction<CR>
+nnoremap <silent> <leader>k  :ALEDocumentation<CR>
+nnoremap <silent> <leader>f  :ALEFix<CR>
+nnoremap <silent> <leader>d  :ALEDetail<CR>
+nnoremap <silent> ]d :ALENextWrap<CR>
+nnoremap <silent> [d :ALEPreviousWrap<CR>
+nnoremap <silent> <leader>li :ALEInfo<CR>
+
+" ==========================================
+" 5. GIT (Fugitive + GitGutter)
+" ==========================================
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gc :Git commit<CR>
+nnoremap <leader>gp :Git push<CR>
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap <leader>hs <Plug>(GitGutterStageHunk)
+nmap <leader>hu <Plug>(GitGutterUndoHunk)
+nmap <leader>hp <Plug>(GitGutterPreviewHunk)
+
+" ==========================================
+" 6. BUILT-IN TERMINAL
+" ==========================================
+nnoremap <leader>t :terminal ++curwin<CR>
+nnoremap <leader>ts :terminal<CR>
+tnoremap <C-w>n <C-w>N
+" Leave terminal-job mode with Esc, then use normal Vim motions
+tnoremap <Esc> <C-w>N
+" vim-tmux-navigator also works from the terminal buffer
+tmap <C-h> <C-w>h
+tmap <C-j> <C-w>j
+tmap <C-k> <C-w>k
+tmap <C-l> <C-w>l
