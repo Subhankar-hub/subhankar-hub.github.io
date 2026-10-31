@@ -459,6 +459,33 @@ p {
   max-width: 44rem;
 }
 
+.policy-content {
+  max-width: 48rem;
+  padding: 1rem 0 4rem;
+}
+
+.policy-content h2 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+}
+
+.policy-content h3 {
+  font-size: 1.05rem;
+  margin-top: 1.5rem;
+}
+
+.policy-content ul {
+  padding-left: 1.25rem;
+}
+
+.policy-content li + li {
+  margin-top: 0.4rem;
+}
+
+.policy-content address {
+  font-style: normal;
+}
+
 .toc {
   display: flex;
   flex-wrap: wrap;

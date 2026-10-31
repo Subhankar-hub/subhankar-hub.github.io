@@ -9,6 +9,11 @@ rm -rf "$DIST"
 mkdir -p "$DIST/assets"
 
 cp "$ROOT/index.html" "$ROOT/vim-tmux.html" "$ROOT/dotfiles.html" "$ROOT/404.html" "$DIST/"
+mkdir -p "$DIST/support" "$DIST/terms-of-service" "$DIST/privacy-policy" "$DIST/cancellation"
+cp "$ROOT/support/index.html" "$DIST/support/"
+cp "$ROOT/terms-of-service/index.html" "$DIST/terms-of-service/"
+cp "$ROOT/privacy-policy/index.html" "$DIST/privacy-policy/"
+cp "$ROOT/cancellation/index.html" "$DIST/cancellation/"
 cp "$ROOT/LICENSE" "$DIST/"
 cp -a "$ROOT/assets/." "$DIST/assets/"
 
