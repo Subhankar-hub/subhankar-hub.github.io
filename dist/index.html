@@ -1,361 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subhankar Roy</title>
-    <meta name="description" content="Software engineer in Tripura. GIS web apps, backend APIs, and systems work.">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="2026 B.Tech Computer Science and Engineering graduate with software engineering experience in Java (Java 17, Spring Boot, Hibernate/JPA) and AI/ML (PyTorch, CUDA, scikit-learn). Built secure, high-performance REST APIs and full-stack features for a government digital services portal and now deliver production web application features end to end. Work across the full software development life cycle in Agile feature teams, with a background in complex analytical and numerical problem solving.">
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" data-theme-color="dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" data-theme-color="light">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Subhankar Roy - Software Engineer">
+  <meta property="og:description" content="2026 B.Tech Computer Science and Engineering graduate with software engineering experience in Java (Java 17, Spring Boot, Hibernate/JPA) and AI/ML (PyTorch, CUDA, scikit-learn). Built secure, high-performance REST APIs and full-stack features for a government digital services portal and now deliver production web application features end to end. Work across the full software development life cycle in Agile feature teams, with a background in complex analytical and numerical problem solving.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Subhankar Roy - Software Engineer">
+  <meta name="twitter:description" content="2026 B.Tech Computer Science and Engineering graduate with software engineering experience in Java (Java 17, Spring Boot, Hibernate/JPA) and AI/ML (PyTorch, CUDA, scikit-learn). Built secure, high-performance REST APIs and full-stack features for a government digital services portal and now deliver production web application features end to end. Work across the full software development life cycle in Agile feature teams, with a background in complex analytical and numerical problem solving.">
+  <title>Subhankar Roy - Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      if (savedTheme === "dark" || savedTheme === "light") {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch {}
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Subhankar Roy",
+      "jobTitle": "Software Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "National Informatics Centre"
+      },
+      "sameAs": [
+        "https://github.com/Subhankar-hub",
+        "https://www.linkedin.com/in/subhankar-smith"
+      ]
+    }
+  </script>
+  <script src="assets/js/main.js" defer></script>
 </head>
-
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-        <nav class="nav container" aria-label="Primary">
-            <a class="logo" href="index.html">Subhankar Roy</a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="vim-tmux.html">Vim &amp; Tmux</a></li>
-                <li><a href="dotfiles.html">Dotfiles</a></li>
-                <li><a class="resume" href="assets/data/Subhankar_Roy_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
-            </ul>
-        </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="terminal-window">
+    <header class="terminal-window__bar">
+      <div class="terminal-window__dots" aria-hidden="true">
+        <span class="terminal-window__dot terminal-window__dot--red"></span>
+        <span class="terminal-window__dot terminal-window__dot--yellow"></span>
+        <span class="terminal-window__dot terminal-window__dot--green"></span>
+      </div>
+      <p class="terminal-window__title">subhankar@portfolio: ~</p>
     </header>
 
-    <main id="main">
-        <section class="hero">
-            <div class="container hero-grid">
-                <div>
-                    <p class="eyebrow">Tripura, India</p>
-                    <h1>Subhankar Roy</h1>
-                    <p class="lede">Software Developer at National Informatics Centre</p>
-                    <p class="hero-copy">
-                        I have built Angular frontends for a GIS web application, talking to FastAPI and PostgreSQL
-                        and rendering layers through GeoServer. Before that I shipped Spring Boot APIs for
-                        Tripura’s Professional Tax Portal at NIC. I like clear interfaces, careful testing,
-                        and a terminal that stays out of the way.
-                    </p>
-                    <div class="actions">
-                        <a class="btn btn-primary" href="#work">See work</a>
-                        <a class="btn btn-ghost" href="assets/data/Subhankar_Roy_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
-                    </div>
-                    <div class="social">
-                        <a href="mailto:subhankar.smith2003@gmail.com">Email</a>
-                        <a href="https://github.com/Subhankar-hub" target="_blank" rel="noopener">GitHub</a>
-                        <a href="https://www.linkedin.com/in/subhankar-smith" target="_blank" rel="noopener">LinkedIn</a>
-                        <a href="tel:+918413986184">+91 84139 86184</a>
-                    </div>
-                </div>
-                <img class="portrait" src="assets/images/profile.jpg" alt="Portrait of Subhankar Roy">
+    <div class="terminal-window__body">
+      <main id="main">
+        <section class="section hero" id="home" aria-labelledby="name" data-section>
+          <p class="prompt" aria-hidden="true"><span class="prompt__symbol">$</span> whoami</p>
+          <div class="hero__identity">
+            <div>
+              <h1 class="hero__name" id="name">Subhankar Roy<span class="hero__cursor" aria-hidden="true"></span></h1>
+              <p class="hero__location">Tripura, India (open to relocation to Bangalore)</p>
             </div>
+            <img class="hero__portrait" src="assets/images/profile.webp" width="699" height="1244" alt="Subhankar Roy">
+          </div>
+          <address class="hero__contact">
+            <a href="tel:+918413986184">+91-84139 86184</a>
+            <span aria-hidden="true"> | </span>
+            <a href="mailto:subhankar.smith2003@gmail.com">subhankar.smith2003@gmail.com</a>
+            <span aria-hidden="true"> | </span>
+            <a href="https://www.linkedin.com/in/subhankar-smith">linkedin.com/in/subhankar-smith</a>
+            <span aria-hidden="true"> | </span>
+            <a href="https://github.com/Subhankar-hub">github.com/Subhankar-hub</a>
+          </address>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#work">See work</a>
+            <a class="button button--secondary" href="assets/data/Subhankar_Roy_Resume.pdf" download>Download resume</a>
+          </div>
+          <nav class="hero__resources" aria-label="Site pages">
+            <a href="vim-tmux.html">Vim &amp; Tmux</a>
+            <a href="dotfiles.html">Dotfiles</a>
+            <a href="support/">Support</a>
+            <a href="privacy-policy/">Privacy</a>
+            <a href="terms-of-service/">Terms</a>
+            <a href="cancellation/">Cancellation &amp; Refunds</a>
+          </nav>
+          <div class="hero__summary">
+            <p>2026 B.Tech Computer Science and Engineering graduate with software engineering experience in Java (Java 17, Spring Boot, Hibernate/JPA) and AI/ML (PyTorch, CUDA, scikit-learn). Built secure, high-performance REST APIs and full-stack features for a government digital services portal and now deliver production web application features end to end. Work across the full software development life cycle in Agile feature teams, with a background in complex analytical and numerical problem solving.</p>
+          </div>
         </section>
 
-        <section id="work" class="section">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Work</h2>
-                    <p>Full-time, internships, and research — newest first.</p>
-                </div>
-                <div class="stack">
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>Software Developer · National Informatics Centre (NIC)</h3>
-                            <span class="when">Oct 2026 – Present</span>
-                        </div>
-                        <p class="meta">Agartala, Tripura · Full-time</p>
-                    </article>
-
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>Software Engineer · Hake Technologies</h3>
-                            <span class="when">Apr 2026 – Oct 2026</span>
-                        </div>
-                        <p class="meta">Remote, Tripura · Full-time</p>
-                        <ul>
-                            <li>Built Angular (TypeScript) frontend features for a GIS web application; consuming FastAPI + PostgreSQL REST APIs and rendering geospatial layers via GeoServer (WMS/WFS).</li>
-                            <li>Ran development integration tests across frontend, backend, and GeoServer; catching CORS, layer-loading, and coordinate-projection issues before production.</li>
-                            <li>Wrote reusable Angular services for WMS/WFS requests and coordinating API contract changes with the backend.</li>
-                        </ul>
-                        <div class="tags">
-                            <span class="tag">Angular</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">GeoServer</span>
-                            <span class="tag">WMS / WFS</span>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>Software Engineering Intern · NIC, MeitY</h3>
-                            <span class="when">Jun 2025 – Jul 2025</span>
-                        </div>
-                        <p class="meta">Tripura · Internship</p>
-                        <ul>
-                            <li>Built 8+ REST endpoints in Spring Boot (Java 17), Hibernate/JPA, and PostgreSQL for Tripura’s Professional Tax Portal; handled registration and onboarding workflows.</li>
-                            <li>Implemented JWT authentication and RBAC; used parameterised queries and input sanitisation against SQL injection.</li>
-                            <li>Delivered full-stack features with a React/TypeScript team; fixed cross-origin and data-integrity bugs in a 4-week Agile cycle.</li>
-                        </ul>
-                        <div class="tags">
-                            <span class="tag">Java 17</span>
-                            <span class="tag">Spring Boot</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">React</span>
-                            <span class="tag">JWT</span>
-                            <span class="tag">RBAC</span>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>AI Computation Research Intern · Tripura University</h3>
-                            <span class="when">Jun 2023 – Jul 2023</span>
-                        </div>
-                        <p class="meta">Tripura · Research internship</p>
-                        <ul>
-                            <li>Benchmarked CNN training across 4 GPU configurations with PyTorch and CUDA; documented environment setup and performance findings.</li>
-                        </ul>
-                        <div class="tags">
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">CUDA</span>
-                            <span class="tag">Python</span>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>AWS Cloud Trainee · F13 Technologies</h3>
-                            <span class="when">Sep 2021 – Jan 2022</span>
-                        </div>
-                        <p class="meta">New Delhi · Trainee</p>
-                        <ul>
-                            <li>AWS labs covering EC2, S3, RDS, IAM, Lambda, and VPC. Earned AWS Partner Technical, Business, and Cloud Economics accreditations.</li>
-                        </ul>
-                        <div class="tags">
-                            <span class="tag">AWS</span>
-                            <span class="tag">EC2</span>
-                            <span class="tag">S3</span>
-                            <span class="tag">IAM</span>
-                            <span class="tag">Lambda</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
+        <section class="section" id="work" aria-labelledby="work-heading" data-section>
+          <p class="prompt" aria-hidden="true"><span class="prompt__symbol">$</span> cat work.log</p>
+          <h2 class="section__heading" id="work-heading">Work experience</h2>
+          <div class="experience-list">
+            <article class="experience">
+              <p class="experience__date">Oct 2026 - Present</p>
+              <div class="experience__body">
+                <h3 class="experience__title">Software Engineer</h3>
+                <p class="experience__organization">National Informatics Centre</p>
+                <p class="experience__meta">Agartala, Tripura, India · Full-time</p>
+                <ul>
+                  <li>Build React, TypeScript based application using Docker for deployment.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="experience">
+              <p class="experience__date">Apr 2026 - Oct 2026</p>
+              <div class="experience__body">
+                <h3 class="experience__title">Software Engineer</h3>
+                <p class="experience__organization">Hake Technologies</p>
+                <p class="experience__meta">Remote, Tripura, India · Full-time</p>
+                <ul>
+                  <li>Engineer Angular (TypeScript) features for a GIS web application, integrating FastAPI and PostgreSQL REST APIs for seamless data exchange between the client, application server and GeoServer (WMS/WFS).</li>
+                  <li>Own features across the full life cycle (design, development, enhancement and maintenance) in a permanent Agile team, coordinating API contract changes with backend engineers each sprint.</li>
+                  <li>Run integration test cycles across front end, backend and GeoServer, diagnosing CORS, layer-loading and coordinate-projection defects before release; build reusable Angular services that remove duplicated request-handling code.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="experience">
+              <p class="experience__date">Jun 2025 - Jul 2025</p>
+              <div class="experience__body">
+                <h3 class="experience__title">Software Engineering Intern</h3>
+                <p class="experience__organization">National Informatics Centre (NIC), MeitY, Government of India</p>
+                <p class="experience__meta">Tripura · Internship</p>
+                <ul>
+                  <li>Engineered 8+ secure REST endpoints in Java 17 and Spring Boot with Hibernate/JPA and PostgreSQL for Tripura's Professional Tax Portal, covering taxpayer registration and onboarding workflows.</li>
+                  <li>Implemented JWT authentication and role-based access control; hardened data access with parameterised queries and input sanitisation against SQL injection, in line with OWASP practices.</li>
+                  <li>Integrated backend APIs with a React/TypeScript front end over a 4-week Agile cycle; resolved cross-origin and data-integrity defects and validated business logic with JUnit and Mockito tests.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="experience">
+              <p class="experience__date">Jun 2023 - Jul 2023</p>
+              <div class="experience__body">
+                <h3 class="experience__title">AI Computation Research Intern</h3>
+                <p class="experience__organization">Tripura University</p>
+                <p class="experience__meta">Tripura, India · Research Internship</p>
+                <ul>
+                  <li>Benchmarked CNN training across 4 GPU and CPU configurations using PyTorch and CUDA, analysing throughput to recommend an optimal training setup; documented reproducible setup steps and findings for later researchers.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="experience">
+              <p class="experience__date">Sep 2021 - Jan 2022</p>
+              <div class="experience__body">
+                <h3 class="experience__title">AWS Cloud Trainee</h3>
+                <p class="experience__organization">F13 Technologies</p>
+                <p class="experience__meta">New Delhi, India · Trainee</p>
+                <ul>
+                  <li>Completed structured labs across EC2, S3, RDS, IAM, Lambda and VPC; earned AWS Partner Technical, Business and Cloud Economics accreditations.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </section>
 
-        <section id="projects" class="section">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Projects</h2>
-                    <p>Selected work from the resume.</p>
-                </div>
-                <div class="projects">
-                    <article class="card project-card">
-                        <h3>Professional Tax Portal</h3>
-                        <p class="meta">Jun 2025 – Jul 2025</p>
-                        <p>8+ REST endpoints, JWT auth, and RBAC for Tripura’s tax registration flow. Containerised with Docker; data integrity via database constraints and JUnit/Mockito tests.</p>
-                        <div class="tags">
-                            <span class="tag">Java 17</span>
-                            <span class="tag">Spring Boot</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Docker</span>
-                        </div>
-                        <a class="card-link" href="https://github.com/Subhankar-hub/professional-tax-portal" target="_blank" rel="noopener">GitHub →</a>
-                    </article>
-
-                    <article class="card project-card">
-                        <h3>Malware Detection on Linux</h3>
-                        <p class="meta">Jul 2025 – Jun 2026</p>
-                        <p>End-to-end detection pipeline from system-call traces (strace/procfs). Static and dynamic analysis, with ML classification still in development.</p>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">scikit-learn</span>
-                            <span class="tag">Bash</span>
-                            <span class="tag">strace</span>
-                        </div>
-                        <a class="card-link" href="https://github.com/Subhankar-hub/linux-malware-detection-cur" target="_blank" rel="noopener">GitHub →</a>
-                    </article>
-
-                    <article class="card project-card">
-                        <h3>Single-Stage RISC Processor</h3>
-                        <p class="meta">Feb 2026 – Mar 2026</p>
-                        <p>RTL in SystemVerilog, then a full RTL-to-GDSII flow (synthesis, place-and-route, DRC/LVS) through OpenLane. Timing closed at the target frequency.</p>
-                        <div class="tags">
-                            <span class="tag">SystemVerilog</span>
-                            <span class="tag">OpenLane</span>
-                            <span class="tag">Yosys</span>
-                            <span class="tag">OpenROAD</span>
-                        </div>
-                        <a class="card-link" href="https://github.com/Subhankar-hub/Single-Stage-Processor" target="_blank" rel="noopener">GitHub →</a>
-                    </article>
-                </div>
-            </div>
+        <section class="section" id="projects" aria-labelledby="projects-heading" data-section>
+          <p class="prompt" aria-hidden="true"><span class="prompt__symbol">$</span> ls projects/</p>
+          <h2 class="section__heading" id="projects-heading">Projects</h2>
+          <div class="project-grid">
+            <article class="project-card">
+              <p class="project-card__date">Jun 2025 - Jul 2025</p>
+              <h3 class="project-card__title">Professional Tax Portal</h3>
+              <ul class="tag-list" aria-label="Technologies">
+                <li>Java 17</li><li>Spring Boot</li><li>Hibernate/JPA</li><li>PostgreSQL</li><li>React</li><li>TypeScript</li><li>JWT</li><li>Docker</li>
+              </ul>
+              <p>Delivered 8+ REST endpoints with JWT authentication and RBAC; containerised the service with Docker and enforced data integrity through database constraints and JUnit/Mockito tests.</p>
+            </article>
+            <article class="project-card">
+              <p class="project-card__date">Jul 2025 - Jun 2026</p>
+              <h3 class="project-card__title">Malware Detection on Linux</h3>
+              <ul class="tag-list" aria-label="Technologies">
+                <li>Python</li><li>scikit-learn</li><li>Bash</li><li>strace</li><li>procfs</li>
+              </ul>
+              <p>Built an end-to-end machine learning detection pipeline over system-call traces (strace/procfs), combining static and dynamic analysis with feature extraction and scikit-learn classification.</p>
+            </article>
+            <article class="project-card">
+              <p class="project-card__date">Feb 2026 - Mar 2026</p>
+              <h3 class="project-card__title">Single-Stage RISC Processor - ASIC Flow</h3>
+              <ul class="tag-list" aria-label="Technologies">
+                <li>SystemVerilog</li><li>OpenLane</li><li>Yosys</li><li>OpenROAD</li>
+              </ul>
+              <p>Implemented the RTL and drove the complete RTL-to-GDSII flow (synthesis, place and route, DRC/LVS) using OpenLane, achieving timing closure at the target frequency.</p>
+            </article>
+          </div>
         </section>
 
-        <section id="skills" class="section">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Skills</h2>
-                </div>
-                <div class="skills">
-                    <div class="card skill-group">
-                        <h3>Languages</h3>
-                        <div class="tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">C/C++</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">Bash</span>
-                            <span class="tag">SystemVerilog</span>
-                        </div>
-                    </div>
-                    <div class="card skill-group">
-                        <h3>Frameworks</h3>
-                        <div class="tags">
-                            <span class="tag">FastAPI</span>
-                            <span class="tag">Spring Boot</span>
-                            <span class="tag">Hibernate/JPA</span>
-                            <span class="tag">Angular</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Maven</span>
-                        </div>
-                    </div>
-                    <div class="card skill-group">
-                        <h3>Data &amp; GIS</h3>
-                        <div class="tags">
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">PostGIS</span>
-                            <span class="tag">Redis</span>
-                            <span class="tag">GeoServer</span>
-                            <span class="tag">WMS/WFS</span>
-                            <span class="tag">QGIS</span>
-                        </div>
-                    </div>
-                    <div class="card skill-group">
-                        <h3>DevOps &amp; testing</h3>
-                        <div class="tags">
-                            <span class="tag">Docker</span>
-                            <span class="tag">Git</span>
-                            <span class="tag">GitHub Actions</span>
-                            <span class="tag">AWS</span>
-                            <span class="tag">JUnit</span>
-                            <span class="tag">Mockito</span>
-                            <span class="tag">Postman</span>
-                        </div>
-                    </div>
-                    <div class="card skill-group">
-                        <h3>Security</h3>
-                        <div class="tags">
-                            <span class="tag">JWT</span>
-                            <span class="tag">OAuth 2.0</span>
-                            <span class="tag">RBAC</span>
-                            <span class="tag">OWASP Top 10</span>
-                        </div>
-                    </div>
-                    <div class="card skill-group">
-                        <h3>ML &amp; hardware</h3>
-                        <div class="tags">
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">CUDA</span>
-                            <span class="tag">RTL design</span>
-                            <span class="tag">OpenLane ASIC flow</span>
-                        </div>
-                    </div>
-                </div>
+        <section class="section" id="skills" aria-labelledby="skills-heading" data-section>
+          <p class="prompt" aria-hidden="true"><span class="prompt__symbol">$</span> echo $SKILLS</p>
+          <h2 class="section__heading" id="skills-heading">Technical skills</h2>
+          <dl class="skills-list">
+            <div class="skills-list__row">
+              <dt>Languages</dt>
+              <dd><ul class="tag-list"><li>Java</li><li>Python</li><li>TypeScript</li><li>SQL</li><li>Bash</li></ul></dd>
             </div>
+            <div class="skills-list__row">
+              <dt>Java &amp; Backend</dt>
+              <dd><ul class="tag-list"><li>Spring Boot</li><li>REST API design and integration</li><li>FastAPI</li></ul></dd>
+            </div>
+            <div class="skills-list__row">
+              <dt>AI / ML</dt>
+              <dd><ul class="tag-list"><li>PyTorch</li><li>scikit-learn</li></ul></dd>
+            </div>
+            <div class="skills-list__row">
+              <dt>Front End &amp; DB</dt>
+              <dd><ul class="tag-list"><li>React</li><li>TypeScript</li><li>PostgreSQL</li></ul></dd>
+            </div>
+            <div class="skills-list__row">
+              <dt>DevOps &amp; Cloud</dt>
+              <dd><ul class="tag-list"><li>Docker</li><li>Git</li><li>GitHub Actions (CI/CD)</li><li>Linux</li></ul></dd>
+            </div>
+            <div class="skills-list__row">
+              <dt>Testing &amp; Security</dt>
+              <dd><ul class="tag-list"><li>JUnit</li><li>Postman</li><li>OWASP Top 10</li></ul></dd>
+            </div>
+            <div class="skills-list__row">
+              <dt>Ways of Working</dt>
+              <dd><ul class="tag-list"><li>Git-based development and issue tracking</li><li>wiki/API documentation</li><li>code review</li></ul></dd>
+            </div>
+          </dl>
         </section>
 
-        <section id="education" class="section">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Education</h2>
-                </div>
-                <div class="edu-grid">
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>B.Tech, Computer Science and Engineering</h3>
-                            <span class="when">Jul 2021 – Jun 2026</span>
-                        </div>
-                        <p class="meta">NERIST, Arunachal Pradesh</p>
-                        <p>Coursework: DSA, operating systems, networks, DBMS, computer architecture.</p>
-                    </article>
-                    <article class="card">
-                        <div class="role-row">
-                            <h3>Certificate Course, Electronics &amp; Communications Engineering</h3>
-                            <span class="when">Jul 2019 – Jul 2021</span>
-                        </div>
-                        <p class="meta">NERIST, Arunachal Pradesh · CGPA 8.4 / 10.0</p>
-                    </article>
-                </div>
+        <section class="section" id="education" aria-labelledby="education-heading" data-section>
+          <p class="prompt" aria-hidden="true"><span class="prompt__symbol">$</span> cat education.txt</p>
+          <h2 class="section__heading" id="education-heading">Education and certifications</h2>
+          <article class="education">
+            <p class="education__date">Jul 2021 - Jun 2026</p>
+            <div>
+              <h3>B.Tech, Computer Science and Engineering</h3>
+              <p>NERIST, Arunachal Pradesh, India</p>
+              <p class="education__coursework">Coursework: Data Structures and Algorithms, Operating Systems, Networks, DBMS, Computer Architecture.</p>
             </div>
+          </article>
+          <h3 class="subsection-heading">Certifications</h3>
+          <ul class="certification-list">
+            <li>Oracle Cloud Infrastructure 2025 Developer Professional (Oct 2025 - Oct 2027)</li>
+            <li>NPTEL: Applied Accelerated Artificial Intelligence (2025)</li>
+            <li>NPTEL: Deep Learning, IIT Ropar</li>
+            <li>AWS Cloud Practitioner Essentials and AWS Partner Accreditations (2021)</li>
+          </ul>
         </section>
 
-        <section id="certs" class="section">
-            <div class="container">
-                <div class="section-head">
-                    <h2>Certifications</h2>
-                </div>
-                <div class="card certs">
-                    <ul>
-                        <li>Oracle OCI 2025 Developer Professional (Oct 2025 – Oct 2027)</li>
-                        <li>NPTEL: Applied Accelerated AI (Oct 2025)</li>
-                        <li>NPTEL: Deep Learning — IIT Ropar</li>
-                        <li>AWS Cloud Practitioner Essentials (Nov 2021)</li>
-                        <li>AWS Partner Accreditations (2021)</li>
-                    </ul>
-                </div>
-            </div>
+        <section class="section contact" id="contact" aria-labelledby="contact-heading">
+          <p class="prompt" aria-hidden="true"><span class="prompt__symbol">$</span> contact</p>
+          <h2 class="section__heading" id="contact-heading">Contact</h2>
+          <address class="contact__links">
+            <a href="mailto:subhankar.smith2003@gmail.com">subhankar.smith2003@gmail.com</a>
+            <a href="tel:+918413986184">+91-84139 86184</a>
+            <a href="https://github.com/Subhankar-hub">github.com/Subhankar-hub</a>
+            <a href="https://www.linkedin.com/in/subhankar-smith">linkedin.com/in/subhankar-smith</a>
+          </address>
         </section>
+      </main>
 
-        <section class="section">
-            <div class="container">
-                <div class="card note-banner">
-                    <div>
-                        <h2>Vim, tmux, and the terminal</h2>
-                        <p>This machine uses Vim 9.1, tmux 3.6, and zsh. Leader is Space. tmux prefix is Ctrl-b. The cheatsheet and the actual config files are on this site.</p>
-                    </div>
-                    <div class="actions tight">
-                        <a class="btn btn-primary" href="vim-tmux.html">Cheatsheet</a>
-                        <a class="btn btn-ghost" href="dotfiles.html">vimrc &amp; tmux.conf</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+      <footer class="site-footer">
+        <p>(c) 2026 Subhankar Roy</p>
+        <nav class="site-footer__links" aria-label="Footer">
+          <a href="mailto:subhankar.smith2003@gmail.com">subhankar.smith2003@gmail.com</a>
+          <a href="https://github.com/Subhankar-hub">GitHub</a>
+          <a href="https://www.linkedin.com/in/subhankar-smith">LinkedIn</a>
+        </nav>
+      </footer>
+    </div>
+  </div>
 
-    <footer class="site-footer">
-        <div class="container footer-row">
-            <p>© 2026 Subhankar Roy</p>
-            <p>
-                <a href="mailto:subhankar.smith2003@gmail.com">subhankar.smith2003@gmail.com</a>
-                ·
-                <a href="https://github.com/Subhankar-hub" target="_blank" rel="noopener">GitHub</a>
-                ·
-                <a href="https://www.linkedin.com/in/subhankar-smith" target="_blank" rel="noopener">LinkedIn</a>
-                ·
-                <a href="support/">Support</a>
-                ·
-                <a href="terms-of-service/">Terms</a>
-                ·
-                <a href="privacy-policy/">Privacy</a>
-                ·
-                <a href="cancellation/">Cancellation &amp; Refunds</a>
-            </p>
-        </div>
-    </footer>
-    <script src="assets/js/site.js"></script>
+  <nav class="status-bar" aria-label="Window list">
+    <div class="status-bar__inner">
+      <div class="status-bar__windows">
+        <a class="status-bar__link" href="#home" data-section-link="home" aria-current="location">[0] home</a>
+        <a class="status-bar__link" href="#work" data-section-link="work">1:work</a>
+        <a class="status-bar__link" href="#projects" data-section-link="projects">2:projects</a>
+        <a class="status-bar__link" href="#skills" data-section-link="skills">3:skills</a>
+        <a class="status-bar__link" href="#education" data-section-link="education">4:education</a>
+      </div>
+      <button class="status-bar__theme" type="button" data-theme-toggle aria-label="Theme: auto">theme: auto</button>
+    </div>
+  </nav>
 </body>
-
 </html>

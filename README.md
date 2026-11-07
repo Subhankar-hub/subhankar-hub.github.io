@@ -1,19 +1,15 @@
-# subhankar-hub.github.io
+# Subhankar Roy
 
-Personal site for [GitHub Pages](https://subhankar-hub.github.io).
+## Local preview
 
-## Build `dist/`
+From the repository root, run:
 
 ```bash
-bash scripts/build.sh
+python3 -m http.server 8000
 ```
 
-That copies the static pages, `assets/`, `LICENSE`, and `.nojekyll` into `dist/`. GitHub Pages should publish **that folder**, not the repo root.
+Open `http://localhost:8000`. The Vim/tmux reference, dotfiles, support, privacy, terms, and cancellation pages are also available from their homepage links.
 
-## GitHub Pages
+## GitHub Pages deployment
 
-This repo is a user site (`username.github.io`). GitHub cannot serve `/dist` as the site root from a branch folder, so deploy uses **GitHub Actions** (`.github/workflows/pages.yml`).
-
-1. Push `main`.
-2. Repo **Settings → Pages → Source → GitHub Actions**.
-3. The workflow builds `dist/` and publishes it to `https://subhankar-hub.github.io`.
+The GitHub Actions workflow builds the static site into `dist/` and deploys it. In repository **Settings → Pages**, select **GitHub Actions** as the source, then push to `main`.

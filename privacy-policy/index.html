@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — Subhankar Roy</title>
     <meta name="description" content="How Subhankar Roy handles information related to this website and software development services.">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" data-theme-color="dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" data-theme-color="light">
+    <script>
+        try {
+            const theme = localStorage.getItem("portfolio-theme");
+            if (theme === "dark" || theme === "light") document.documentElement.dataset.theme = theme;
+        } catch {}
+    </script>
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,6 +25,7 @@
     <header class="site-header">
         <nav class="nav container" aria-label="Primary">
             <a class="logo" href="../index.html">Subhankar Roy</a>
+            <button class="theme-toggle-button" type="button" data-theme-toggle aria-label="Theme: auto">theme: auto</button>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
                 <span></span><span></span><span></span>
             </button>
@@ -72,7 +81,7 @@
             </p>
         </div>
     </footer>
-    <script src="../assets/js/site.js"></script>
+    <script src="../assets/js/main.js" defer></script>
 </body>
 
 </html>
